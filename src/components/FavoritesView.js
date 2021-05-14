@@ -7,6 +7,7 @@ const FavoritesView = () => {
   const [favorites] = useFavorites();
   return (
     <div>
+      <h2>Favorites</h2>
       {Object.entries(favorites)
         .filter(([date, isFavorite]) => isFavorite)
         .map(([date]) => (

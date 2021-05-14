@@ -7,13 +7,13 @@ export const useFavorites = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (favorites === {}) {
+    if (Object.keys(favorites).length === 0) {
       dispatch({
         type: "FAVORITES_FETCHED",
         payload: { favorites: JSON.parse(localStorage.getItem("favorites")) || {} },
       });
     }
-  });
+  }, [favorites, dispatch]);
 
   const toggleFavorite = useCallback(
     (date) => {

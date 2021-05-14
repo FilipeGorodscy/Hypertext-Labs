@@ -5,7 +5,7 @@ import DatePicker from "./DatePicker";
 import FavoriteButton from "./FavoriteButton";
 import NavBar from "./NavBar";
 
-const apiKey = process.env.REACT_APP_NASA_KEY;
+export const apiKey = process.env.REACT_APP_NASA_KEY;
 
 export default function NasaPhoto() {
   const [photoData, setPhotoData] = useState(null);
