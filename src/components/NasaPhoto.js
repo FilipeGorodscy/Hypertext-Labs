@@ -19,9 +19,9 @@ export default function NasaPhoto() {
       const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&&date=${date}`);
       const data = await res.json();
       setPhotoData(data);
-      dispatch({ type: "FETCH_PHOTO_SUCCEEDED", payload: { data } });
+      dispatch({ type: "FETCH_PHOTO_SUCCEEDED", payload: { data, date } });
     }
-  }, [date]);
+  }, [date, dispatch]);
 
   if (!photoData) return <div />;
 

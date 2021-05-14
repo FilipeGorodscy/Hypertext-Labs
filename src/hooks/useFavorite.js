@@ -1,10 +1,28 @@
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 export const useFavorites = () => {
-  const getFavorites = () => JSON.parse(localStorage.getItem("favorites")) || {};
+  const favorites = useSelector((state) => state.favorites);
 
-  const toggleFavorite = (date) => {
-    const favorites = getFavorites();
-    localStorage.setItem("favorites", JSON.stringify({ ...favorites, [date]: !favorites[date] }));
-  };
+  const dispatch = useDispatch();
 
-  return [getFavorites(), { toggleFavorite }];
+  useEffect(() => {
+    if (favorites === {}) {
+      dispatch({
+        type: "FAVORITES_FETCHED",
+        payload: { favorites: JSON.parse(localStorage.getItem("favorites")) || {} },
+      });
+    }
+  });
+
+  const toggleFavorite = useCallback(
+    (date) => {
+      const newFavorites = { ...favorites, [date]: !favorites[date] };
+      dispatch({ type: "FAVORITES_UPDATED", payload: { date, isFavorite: !favorites[date] } });
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    },
+    [favorites]
+  );
+
+  return [favorites, { toggleFavorite }];
 };

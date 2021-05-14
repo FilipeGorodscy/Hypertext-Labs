@@ -21,5 +21,3 @@ export default function App() {
     </Provider>
   );
 }
-
-// https://api.nasa.gov/planetary/apod?api_key=TMtjnKEkpxLiGaE0PTUKEL5hjhGPCUDzRSaTr6Hi
